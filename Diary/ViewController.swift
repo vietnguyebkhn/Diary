@@ -8,17 +8,17 @@
 
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
-    func ReturnHourMinute(result: String) {
-        
+    
+    let realm = try! Realm()
+    
+    var diaryList: Results<Diary>{
+        get {
+            return realm.objects(Diary.self)
+        }
     }
-    
-    func ReturnIndex(result: String) {
-    
-    }
-    
-    
     let MonthInYear = ["January", "February", "March", "April", "May", "June", "July", "August", "Septemper", "October", "November", "December"]
     let DayInWeek = ["Monday", "Tuesday", "Wednesday", "Thusday", "Friday", "Saturday", "Sunday"]
     var DayinMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -43,6 +43,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        mCalendar.reloadData()
+    }
     
     @IBAction func mBackButton(_ sender: Any) {
         switch currentMonth {
@@ -178,11 +181,52 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         switch Direction {
         case 0:
             cell.mDate.text = "\(indexPath.row + 1 - NumberofEmptyBox)"
-           
+            for diary in diaryList {
+                
+                var Index = "\(indexPath.row + 1 - NumberofEmptyBox)-\(MONTH)-\(YEAR)"
+                if Index == diary.date {
+                    var index = indexPath.row
+                    switch index {
+                    case 1...35:
+                        cell.backgroundColor = UIColor(displayP3Red: 0, green: 100, blue: 0, alpha: 0.5)
+                    default:
+                        break
+                    }
+                }
+                
+            }
         case 1...:
             cell.mDate.text = "\(indexPath.row + 1 - NextNumberofEmptyBox)"
+            for diary in diaryList {
+                
+                var Index = "\(indexPath.row + 1 - NextNumberofEmptyBox)-\(MONTH)-\(YEAR)"
+                if Index == diary.date {
+                    var index = indexPath.row
+                    switch index {
+                    case 1...35:
+                        cell.backgroundColor = UIColor(displayP3Red: 0, green: 100, blue: 0, alpha: 0.5)
+                    default:
+                        break
+                    }
+                }
+                
+            }
         case -1:
             cell.mDate.text = "\(indexPath.row + 1 - PreviosofEmptyBox)"
+            for diary in diaryList {
+                
+                    var Index = "\(indexPath.row + 1 - PreviosofEmptyBox)-\(MONTH)-\(YEAR)"
+                    if Index == diary.date {
+                        var index = indexPath.row
+                        switch index {
+                        case 1...35:
+                           cell.backgroundColor = UIColor(displayP3Red: 0, green: 100, blue: 0, alpha: 0.5)
+                        default:
+                         break
+                        }
+                    }
+                
+            }
         default:
             fatalError()
         }
@@ -190,17 +234,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         if Int(cell.mDate.text!)! < 1 {
             cell.isHidden = true
         }
-        cell.backgroundView?.alpha = 0.5
+
         switch indexPath.row {
         case 5,6,12,13,19,20,26,27,33,34:
             if Int(cell.mDate.text!)! > 0 {
                 cell.mDate.textColor = UIColor.red
-                cell.mDate.alpha = 1
                 
             }         
         default:
             cell.mDate.textColor = UIColor.white
-            cell.mDate.alpha = 1
+           
         }
         if currentMonth == MonthInYear[calendar.component(.month, from: date) - 1] && year == calendar.component(.year, from: date) && indexPath.row - 4 == day {
             cell.backgroundColor = UIColor(displayP3Red: 100, green: 0, blue: 0, alpha: 0.5)

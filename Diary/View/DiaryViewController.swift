@@ -12,6 +12,7 @@ import RealmSwift
 
 class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+   
     //let diaryItem = Diary()
     var mDate = String()
     var mHour = String()
@@ -20,14 +21,10 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var diaryList: Results<Diary>{
         get {
             return realm.objects(Diary.self)
+           
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(diaryList.count)
-        return diaryList.count
-        
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
@@ -41,10 +38,27 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationController?.pushViewController(UserInput, animated: true)
         
     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     //   print(diaryList.index(matching: mDate)!)
+      //  Utils.SHOW_LOG(title: "Number of date", content: diaryList.filter)
+       var i = 0
+        for diary in diaryList {
+            if diary.date == mDate {
+                i += 1
+            }
+        }
+        return i
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListDiary", for: indexPath) as! ListDiary
-     
-        cell.setData(data: diaryList[indexPath.row])
+            for diary in diaryList {
+            if diary.date == mDate {
+               
+                cell.setData(data: diaryList[diaryList.index(of: diary)!])
+            }
+        }
+        
         return cell
         
     }
@@ -53,8 +67,10 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         mTableView.register(UINib(nibName: "ListDiary", bundle: nil), forCellReuseIdentifier: "ListDiary")
-    
+    //    mTableView.reloadData()
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        mTableView.reloadData()
+    }
     
 }

@@ -27,6 +27,8 @@
 		A878061E213D9EFD0015EB30 /* DiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A878061D213D9EFD0015EB30 /* DiaryTests.swift */; };
 		A8780629213D9EFD0015EB30 /* DiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8780628213D9EFD0015EB30 /* DiaryUITests.swift */; };
 		A8780638213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8780637213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift */; };
+		A88C8A6421428636003FBC25 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88C8A6321428636003FBC25 /* CornerView.swift */; };
+		A8BC54BD21464BF8008B42BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC54BC21464BF8008B42BC /* DetailViewController.swift */; };
 		C0AF3DC0FF8011B08C890DD8 /* Pods_DiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B5BD2FE7FB1DB04777DE26 /* Pods_DiaryTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		A8780628213D9EFD0015EB30 /* DiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryUITests.swift; sourceTree = "<group>"; };
 		A878062A213D9EFD0015EB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8780637213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidekeyboardwhentouchanywhere.swift; sourceTree = "<group>"; };
+		A88C8A6321428636003FBC25 /* CornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
+		A8BC54BC21464BF8008B42BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B19C01AAF90CE6933580EC9F /* Pods_Diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBFD1251665C473C037E64C /* Pods-DiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiaryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DiaryUITests/Pods-DiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF2CAE5DDDAB5DEC148312B6 /* Pods_DiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,7 @@
 				A870B8A3213FB7AD0013B925 /* Diary.storyboard */,
 				A870B8A7213FBB350013B925 /* DiaryItem.swift */,
 				A870B8AC213FCE9F0013B925 /* UserInputViewController.swift */,
+				A8BC54BC21464BF8008B42BC /* DetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				A8780637213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift */,
+				A88C8A6321428636003FBC25 /* CornerView.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8BC54BD21464BF8008B42BC /* DetailViewController.swift in Sources */,
 				A878060E213D9EFB0015EB30 /* Diary.xcdatamodeld in Sources */,
 				A870B8A8213FBB350013B925 /* DiaryItem.swift in Sources */,
 				A8780638213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift in Sources */,
@@ -451,6 +458,7 @@
 				A870B8AD213FCE9F0013B925 /* UserInputViewController.swift in Sources */,
 				A8780608213D9EFB0015EB30 /* ViewController.swift in Sources */,
 				A870B8A6213FB7CA0013B925 /* DiaryViewController.swift in Sources */,
+				A88C8A6421428636003FBC25 /* CornerView.swift in Sources */,
 				A870B8B0213FE03B0013B925 /* Utils.swift in Sources */,
 				A812EE43213E639F00CFDACC /* CalendarVars.swift in Sources */,
 				A8780606213D9EFB0015EB30 /* AppDelegate.swift in Sources */,

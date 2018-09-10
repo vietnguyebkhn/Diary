@@ -18,8 +18,11 @@ import RealmSwift
 //}
 
 
-class UserInputViewController: UIViewController {
-
+class UserInputViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+  
+    
+ var status = ["An lành", "Buồn bã", "Chán nản", "Choáng váng", "Cô đơn", "Đáng yêu", "Đau đớn", "Điên", "Đang yêu", "Hạnh phúc", "Hoa mắt", "Không hứng thú", "Kích thích", "Kiệt sức"]
   //  var mDelegate : UserInputViewControllerDelegate?
     var mIndex: String = ""
     var mHourMinutes: String = ""
@@ -30,6 +33,9 @@ class UserInputViewController: UIViewController {
  //  let diaryItem = Diary()
     
     
+
+    
+    @IBOutlet weak var mStatusTableView: UITableView!
     @IBOutlet weak var mDetail: UITextView!
     @IBOutlet weak var mStatus: UITextView!
     @IBOutlet weak var mTitle: UITextView!
@@ -41,6 +47,13 @@ class UserInputViewController: UIViewController {
             return realm.objects(Diary.self)
         }
     }
+    
+    @IBAction func mStatusButton(_ sender: Any) {
+        mStatusTableView.isHidden = false
+        
+    }
+    
+    
     
     @IBAction func mAddButton(_ sender: Any) {
        let diaryItem = Diary()
@@ -55,10 +68,10 @@ class UserInputViewController: UIViewController {
             
         try! self.realm.write({
             self.realm.add(diaryItem)
-            dismiss(animated: true, completion: nil)
+//            dismiss(animated: true, completion: nil)
         })
         }
-        
+        _ = navigationController?.popViewController(animated: true)
         
 //        let StoryBoard = UIStoryboard(name: "Diary", bundle: nil)
 //        let Diary = StoryBoard.instantiateViewController(withIdentifier: "DiaryViewController") as! DiaryViewController
@@ -66,6 +79,22 @@ class UserInputViewController: UIViewController {
 //        Diary.mHour = mHourMinutes
 //        self.navigationController?.pushViewController(Diary, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return status.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ejimoti", for: indexPath)
+        cell.textLabel?.text = status[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mStatus.text = status[indexPath.row]
+        mStatusTableView.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -73,7 +102,20 @@ class UserInputViewController: UIViewController {
         Utils.SHOW_LOG(title: "mHourMinute", content: mHourMinutes)
         // Do any additional setup after loading the view.
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var touch: UITouch? = touches.first as! UITouch
+        //        //location is relative to the current view
+        //        // do something with the touched point
+               if touch?.view != mStatusTableView {
+                  mStatusTableView.isHidden = true
+    }
+    }
+    
 
+
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -81,4 +123,17 @@ class UserInputViewController: UIViewController {
     
 
 
+}
+
+extension ViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: view.frame.width, height: .infinity)
+        let estimateSize = textView.sizeThatFits(size)
+        textView.constraints.forEach { (constraints) in
+            if constraints.firstAttribute == .height {
+                constraints.constant = estimateSize.height
+            }
+            
+        }
+    }
 }
