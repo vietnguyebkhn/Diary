@@ -25,6 +25,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    var templist = [Diary]()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
@@ -52,12 +53,14 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListDiary", for: indexPath) as! ListDiary
-            for diary in diaryList {
-            if diary.date == mDate {
-               
-                cell.setData(data: diaryList[diaryList.index(of: diary)!])
-            }
-        }
+        cell.setData(data: templist[indexPath.row])
+//            for diary in diaryList {
+//            if diary.date == mDate {
+//          //     cell.setData(data: diaryList[indexPath.row])
+//               // cell.setData(data: diary)
+//                cell.setData(data: diaryList[diaryList.index(of: diary)!])
+//            }
+//        }
         
         return cell
         
@@ -68,9 +71,23 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         hideKeyboardWhenTappedAround()
         mTableView.register(UINib(nibName: "ListDiary", bundle: nil), forCellReuseIdentifier: "ListDiary")
     //    mTableView.reloadData()
+        
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
-        mTableView.reloadData()
+        super.viewWillAppear(animated)
+        templist.removeAll()
+        
+        for diary in diaryList {
+            if diary.date == mDate {
+                templist.append(diary)
+            }
+        }
+        
+        if templist.count > 0 {
+            mTableView.reloadData()
+        }
     }
     
 }
