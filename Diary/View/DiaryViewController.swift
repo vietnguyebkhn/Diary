@@ -51,6 +51,15 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return i
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let diaryItem = Diary()
+        let StoryBoard = UIStoryboard(name: "Diary", bundle: nil)
+        let UserInput = StoryBoard.instantiateViewController(withIdentifier: "UserInputViewController") as! UserInputViewController
+      UserInput.setData(data: templist[indexPath.row])
+        
+        self.navigationController?.pushViewController(UserInput, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListDiary", for: indexPath) as! ListDiary
         cell.setData(data: templist[indexPath.row])

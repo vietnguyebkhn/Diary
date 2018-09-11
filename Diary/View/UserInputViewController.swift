@@ -47,7 +47,11 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
             return realm.objects(Diary.self)
         }
     }
-    
+    func setData(data: Diary) {
+        mTitle.text = data.title as! String ?? ""
+        mStatus.text = data.status as! String ?? ""
+        mDetail.text = data.detail as! String ?? ""
+    }
     @IBAction func mStatusButton(_ sender: Any) {
         mStatusTableView.isHidden = false
         
@@ -62,6 +66,8 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
         diaryItem.detail = mDetail.text
           diaryItem.date = self.mIndex
         diaryItem.HourMinutes = self.mHourMinutes
+        diaryItem.postid = "\(Date().timeIntervalSince1970)"
+        Utils.SHOW_LOG(title: "timestamp", content: diaryItem.postid)
         Utils.SHOW_LOG(title: "date", content: mIndex)
         Utils.SHOW_LOG(title: "hour", content: mHourMinutes)
         if (mTitle.text != "" || mStatus.text != "" || mDetail.text != "" ) {

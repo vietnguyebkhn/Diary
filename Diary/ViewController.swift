@@ -9,6 +9,8 @@
 
 import UIKit
 import RealmSwift
+import Firebase
+import FBSDKCoreKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
@@ -45,6 +47,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     override func viewWillAppear(_ animated: Bool) {
         mCalendar.reloadData()
+    }
+    
+    
+    @IBAction func mLogoutFB(_ sender: Any) {
+         let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            FBSDKAccessToken.setCurrent(nil)
+            let StoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let LoginScr = StoryBoard.instantiateViewController(withIdentifier: "LoginScr") as! LoginFacebookViewController
+            self.present(LoginScr, animated: false, completion: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+
     }
     
     @IBAction func mBackButton(_ sender: Any) {
@@ -153,6 +170,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             print("Hello")
        Utils.SHOW_LOG(title: "date", content: DiaryViewController.mDate)
         Utils.SHOW_LOG(title: "hourminute", content: DiaryViewController.mHour)
+       // self.present(DiaryViewController, animated: false, completion: nil)
         self.navigationController?.pushViewController(DiaryViewController, animated: true)
     
  

@@ -10,12 +10,14 @@ import Foundation
 import RealmSwift
 
 class Diary: Object {
+    @objc dynamic var postid = UUID().uuidString
     @objc dynamic var title = ""
     @objc dynamic var status = ""
     @objc dynamic var detail = ""
     @objc dynamic var date = ""
     @objc dynamic var HourMinutes = ""
-
-   // @objc dynamic var index = 0
+    override static func primaryKey() -> String? {
+        return "postid"
+    }
 
 }
