@@ -55,7 +55,7 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let diaryItem = Diary()
         let StoryBoard = UIStoryboard(name: "Diary", bundle: nil)
         let UserInput = StoryBoard.instantiateViewController(withIdentifier: "UserInputViewController") as! UserInputViewController
-      UserInput.setData(data: templist[indexPath.row])
+     // UserInput.setData(data: templist[indexPath.row])
         
         self.navigationController?.pushViewController(UserInput, animated: true)
     }

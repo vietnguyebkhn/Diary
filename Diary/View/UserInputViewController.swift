@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import Firebase
+import FirebaseDatabase
 
 
 
@@ -47,11 +49,7 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
             return realm.objects(Diary.self)
         }
     }
-    func setData(data: Diary) {
-        mTitle.text = data.title as! String ?? ""
-        mStatus.text = data.status as! String ?? ""
-        mDetail.text = data.detail as! String ?? ""
-    }
+  
     @IBAction func mStatusButton(_ sender: Any) {
         mStatusTableView.isHidden = false
         
@@ -66,7 +64,22 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
         diaryItem.detail = mDetail.text
           diaryItem.date = self.mIndex
         diaryItem.HourMinutes = self.mHourMinutes
-        diaryItem.postid = "\(Date().timeIntervalSince1970)"
+         diaryItem.postid = "\(Date().timeIntervalSince1970)"
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference().child("user")
+        
+            ref.childByAutoId().setValue([
+                "postid": "\(Date().timeIntervalSince1970)",
+                "title": mTitle.text ?? "",
+                "detail": mDetail.text ?? "",
+                "hour": self.mHourMinutes ?? "",
+                "date": self.mIndex ?? "",
+                "status":  mStatus.text ?? ""
+                
+                ])
+        
+       
         Utils.SHOW_LOG(title: "timestamp", content: diaryItem.postid)
         Utils.SHOW_LOG(title: "date", content: mIndex)
         Utils.SHOW_LOG(title: "hour", content: mHourMinutes)

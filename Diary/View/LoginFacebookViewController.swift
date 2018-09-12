@@ -10,8 +10,20 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import FirebaseDatabase
+import RealmSwift
+
 
 class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
+    var ref: DatabaseReference!
+    let realm = try! Realm()
+    var diaryList: Results<Diary>{
+        get {
+            return realm.objects(Diary.self)
+            
+        }
+    }
     
     var LogginButtonFB: FBSDKLoginButton = FBSDKLoginButton()
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
@@ -32,6 +44,7 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
@@ -55,8 +68,22 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
         // self.present(Diary, animated: false, completion: nil)
             Utils.SHOW_LOG(title: "UID", content: user.uid)
         } else {
+            self.ref = Database.database().reference().child("user")
+            for item in self.diaryList {
+                if item != nil {
+                self.ref.childByAutoId().setValue([
+                    "postid": item.postid,
+                    "title": item.title,
+                    "detail": item.detail,
+                    "hour": item.HourMinutes,
+                    "date": item.date,
+                    "status": item.status
+                    ])
+                }
+            }
+           
             self.LogginButtonFB.frame = CGRect(x: 16, y: 50, width: self.view.frame.width - 32, height: 50)
-            self.LogginButtonFB.readPermissions = ["public_profile", "email", "user_friends"]
+            self.LogginButtonFB.readPermissions = ["public_profile", "email"]
             self.LogginButtonFB.delegate = self
             self.view.addSubview(self.LogginButtonFB)
         }
