@@ -71,13 +71,15 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
             self.ref = Database.database().reference().child("user")
             for item in self.diaryList {
                 if item != nil {
-                self.ref.childByAutoId().setValue([
-                    "postid": item.postid,
-                    "title": item.title,
-                    "detail": item.detail,
-                    "hour": item.HourMinutes,
-                    "date": item.date,
-                    "status": item.status
+                self.ref.setValue([
+                    item.postid: [
+                        "title": item.title,
+                        "detail": item.detail,
+                        "hour": item.HourMinutes,
+                        "date": item.date,
+                        "status": item.status
+                    ]
+                    
                     ])
                 }
             }

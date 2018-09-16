@@ -64,19 +64,19 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
         diaryItem.detail = mDetail.text
           diaryItem.date = self.mIndex
         diaryItem.HourMinutes = self.mHourMinutes
-         diaryItem.postid = "\(Date().timeIntervalSince1970)"
+         diaryItem.postid = "\(UInt64(Date().timeIntervalSince1970 * 10000000))"
         
         var ref: DatabaseReference!
         ref = Database.database().reference().child("user")
         
-            ref.childByAutoId().setValue([
-                "postid": "\(Date().timeIntervalSince1970)",
+            ref.updateChildValues([
+                "\(UInt64(Date().timeIntervalSince1970 * 10000000))": [
                 "title": mTitle.text ?? "",
                 "detail": mDetail.text ?? "",
-                "hour": self.mHourMinutes ?? "",
-                "date": self.mIndex ?? "",
+                "hour": self.mHourMinutes,
+                "date": self.mIndex,
                 "status":  mStatus.text ?? ""
-                
+                ]
                 ])
         
        

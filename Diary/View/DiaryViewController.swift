@@ -8,11 +8,13 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
+import Firebase
 
 
 class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-   
+   var ref: DatabaseReference!
     //let diaryItem = Diary()
     var mDate = String()
     var mHour = String()
@@ -80,7 +82,9 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
         hideKeyboardWhenTappedAround()
         mTableView.register(UINib(nibName: "ListDiary", bundle: nil), forCellReuseIdentifier: "ListDiary")
     //    mTableView.reloadData()
-        
+//        ref.child("user").observe(.childAdded, with: {(snapshot) in
+//            Utils.SHOW_LOG(title: "Snapsshot", content: snapshot)
+//        })
         
         
     }

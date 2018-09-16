@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Diary-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="Calendar" id="BYZ-38-t0r" customClass="ViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
@@ -163,7 +163,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jIY-0d-mbX" firstAttribute="leading" secondItem="aAn-AV-XX7" secondAttribute="trailing" constant="30" id="2OU-Pu-U3L"/>
                             <constraint firstItem="jIY-0d-mbX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9kK-4F-6aB"/>
@@ -192,7 +192,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="oNm-nw-nOh"/>
+                    <navigationItem key="navigationItem" title="Diary" id="oNm-nw-nOh"/>
                     <connections>
                         <outlet property="mCalendar" destination="GXc-JQ-NRU" id="EdL-yz-7cf"/>
                         <outlet property="mMonthLb" destination="jIY-0d-mbX" id="82b-S0-uDL"/>
@@ -202,7 +202,7 @@
             </objects>
             <point key="canvasLocation" x="3905" y="116"/>
         </scene>
-        <!--Login Facebook View Controller-->
+        <!--Diary-->
         <scene sceneID="QHn-BW-16f">
             <objects>
                 <viewController storyboardIdentifier="LoginScr" id="Ndq-S5-V5Q" customClass="LoginFacebookViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
@@ -231,7 +231,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yyP-ze-gCf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1py-nZ-gTK"/>
+                    <navigationItem key="navigationItem" title="Diary" id="1py-nZ-gTK"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" id="Em7-e8-2he"/>
                     </connections>
@@ -244,11 +244,12 @@
         <!--Navigation Controller-->
         <scene sceneID="yNb-bE-td9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ha0-PL-ID5" sceneMemberID="viewController">
+                <navigationController hidesBarsOnSwipe="YES" id="Ha0-PL-ID5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0hh-Sl-SPc">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
