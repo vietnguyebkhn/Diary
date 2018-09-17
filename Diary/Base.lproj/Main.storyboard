@@ -21,9 +21,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hd-apple-iphone-wallpapers-656ios" translatesAutoresizingMaskIntoConstraints="NO" id="E0c-Tx-brD">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcu-bw-BbT">
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jcu-bw-BbT">
                                 <rect key="frame" x="12" y="114" width="350" height="505"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="01R-IN-VmG"/>
                                     <constraint firstAttribute="height" constant="505" id="nru-eh-sDw"/>
@@ -233,7 +233,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Diary" id="1py-nZ-gTK"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="Em7-e8-2he"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="Home" id="Em7-e8-2he"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JmY-AA-cDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -244,7 +244,7 @@
         <!--Navigation Controller-->
         <scene sceneID="yNb-bE-td9">
             <objects>
-                <navigationController hidesBarsOnSwipe="YES" id="Ha0-PL-ID5" sceneMemberID="viewController">
+                <navigationController id="Ha0-PL-ID5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0hh-Sl-SPc">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

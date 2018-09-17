@@ -9,20 +9,23 @@
 import Foundation
 
 class DataVO {
-    var postid = 0.0
+    var postid = ""
    var title = ""
   var  status = ""
   var  detail = ""
    var date = ""
-    var  HourMinutes = ""
+    var  hour = ""
+    
+    init()  {}
+
     
     init(data: [String: AnyObject]) {
-        postid = data["postid"] as? Double ?? 0.0
+        postid = data["postid"] as? String ?? ""
         title = data["title"] as? String ?? ""
-        title = data["status"] as? String ?? ""
-        title = data["detail"] as? String ?? ""
-        title = data["date"] as? String ?? ""
-        title = data["HourMinutes"] as? String ?? ""
+        status = data["status"] as? String ?? ""
+        detail = data["detail"] as? String ?? ""
+        date = data["date"] as? String ?? ""
+        hour = data["hour"] as? String ?? ""
 
 
     }

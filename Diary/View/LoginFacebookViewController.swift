@@ -25,6 +25,8 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
     
+    
+    
     var LogginButtonFB: FBSDKLoginButton = FBSDKLoginButton()
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         print("Logined")
@@ -35,7 +37,29 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
                 return
             } else {
             Utils.SHOW_LOG(content: "Login Firebase success")
-                
+                self.ref = Database.database().reference().child("user").child((Auth.auth().currentUser?.uid)!)
+                for item in self.diaryList {
+                    if item != nil {
+                        self.ref.updateChildValues([
+                            item.postid: [
+                                "title": item.title,
+                                "detail": item.detail,
+                                "hour": item.HourMinutes,
+                                "date": item.date,
+                                "status": item.status,
+                                "postid": item.postid
+
+                            ]
+                            
+                            ])
+                    }
+                }
+//                self.checkLoginFB()
+//                return
+                let HomeStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+                let Diary = HomeStoryboard.instantiateViewController(withIdentifier: "Calendar") as! ViewController
+                self.navigationController?.pushViewController(Diary, animated: true)
             }
         }
     }
@@ -58,31 +82,35 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginFB()
     }
     
+    
     func checkLoginFB() {
        Auth.auth().addStateDidChangeListener { (auth, user) in
         if let user = user {
+            self.ref = Database.database().reference().child("user").child((Auth.auth().currentUser?.uid)!)
+            for item in self.diaryList {
+                if item != nil {
+                    self.ref.updateChildValues([
+                        item.postid: [
+                            "title": item.title,
+                            "detail": item.detail,
+                            "hour": item.HourMinutes,
+                            "date": item.date,
+                            "status": item.status,
+                            "postid": item.postid
+                        ]
+                        
+                        ])
+                }
+            }
             let HomeStoryboard = UIStoryboard(name: "Main", bundle: nil)
           
             let Diary = HomeStoryboard.instantiateViewController(withIdentifier: "Calendar") as! ViewController
           self.navigationController?.pushViewController(Diary, animated: true)
-        // self.present(Diary, animated: false, completion: nil)
+        
+      //  self.present(Diary, animated: false, completion: nil)
             Utils.SHOW_LOG(title: "UID", content: user.uid)
+            
         } else {
-            self.ref = Database.database().reference().child("user")
-            for item in self.diaryList {
-                if item != nil {
-                self.ref.setValue([
-                    item.postid: [
-                        "title": item.title,
-                        "detail": item.detail,
-                        "hour": item.HourMinutes,
-                        "date": item.date,
-                        "status": item.status
-                    ]
-                    
-                    ])
-                }
-            }
            
             self.LogginButtonFB.frame = CGRect(x: 16, y: 50, width: self.view.frame.width - 32, height: 50)
             self.LogginButtonFB.readPermissions = ["public_profile", "email"]
@@ -96,7 +124,7 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkLoginFB()
+       
      //   print( self.LogginButtonFB.readPermissions)
         // Do any additional setup after loading the view.
     }
@@ -120,6 +148,19 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
             
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+        if Utils.checkInternet(viewcontroler: self) == true {
+            checkLoginFB()
+        } else {
+            let HomeStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let Diary = HomeStoryboard.instantiateViewController(withIdentifier: "Calendar") as! ViewController
+            self.navigationController?.pushViewController(Diary, animated: true)
+        }
+        
+    }
+    
     
     func getData() {
         if FBSDKAccessToken.current() != nil {

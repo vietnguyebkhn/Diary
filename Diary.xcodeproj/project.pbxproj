@@ -30,6 +30,16 @@
 		A8780629213D9EFD0015EB30 /* DiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8780628213D9EFD0015EB30 /* DiaryUITests.swift */; };
 		A8780638213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8780637213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift */; };
 		A88C8A6421428636003FBC25 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88C8A6321428636003FBC25 /* CornerView.swift */; };
+		A896EA77214F8F5F007253AB /* LocalizeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA76214F8F5F007253AB /* LocalizeString.swift */; };
+		A896EA79214F8FB0007253AB /* LocalizeSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA78214F8FB0007253AB /* LocalizeSwift.swift */; };
+		A896EA7B214F8FE1007253AB /* LocalizeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA7A214F8FE1007253AB /* LocalizeProtocol.swift */; };
+		A896EA7D214F903C007253AB /* LocalizeStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA7C214F903C007253AB /* LocalizeStrings.swift */; };
+		A896EA7F214F9065007253AB /* LocalizeCommonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA7E214F9065007253AB /* LocalizeCommonProtocol.swift */; };
+		A896EA81214F90AC007253AB /* LocalizeJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA80214F90AC007253AB /* LocalizeJson.swift */; };
+		A896EA83214F9109007253AB /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA82214F9109007253AB /* Localize.swift */; };
+		A896EA85214F9174007253AB /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA84214F9174007253AB /* NetworkReachabilityManager.swift */; };
+		A896EA88214F9EA1007253AB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA87214F9EA1007253AB /* Service.swift */; };
+		A896EA8A214FA0C2007253AB /* ListDataVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A896EA89214FA0C2007253AB /* ListDataVO.swift */; };
 		A8BC54BD21464BF8008B42BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC54BC21464BF8008B42BC /* DetailViewController.swift */; };
 		A8C6280E21467B1900AB7D22 /* LoginFacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C6280D21467B1900AB7D22 /* LoginFacebookViewController.swift */; };
 		C0AF3DC0FF8011B08C890DD8 /* Pods_DiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B5BD2FE7FB1DB04777DE26 /* Pods_DiaryTests.framework */; };
@@ -86,6 +96,16 @@
 		A878062A213D9EFD0015EB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8780637213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidekeyboardwhentouchanywhere.swift; sourceTree = "<group>"; };
 		A88C8A6321428636003FBC25 /* CornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
+		A896EA76214F8F5F007253AB /* LocalizeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeString.swift; sourceTree = "<group>"; };
+		A896EA78214F8FB0007253AB /* LocalizeSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeSwift.swift; sourceTree = "<group>"; };
+		A896EA7A214F8FE1007253AB /* LocalizeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeProtocol.swift; sourceTree = "<group>"; };
+		A896EA7C214F903C007253AB /* LocalizeStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeStrings.swift; sourceTree = "<group>"; };
+		A896EA7E214F9065007253AB /* LocalizeCommonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeCommonProtocol.swift; sourceTree = "<group>"; };
+		A896EA80214F90AC007253AB /* LocalizeJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeJson.swift; sourceTree = "<group>"; };
+		A896EA82214F9109007253AB /* Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
+		A896EA84214F9174007253AB /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		A896EA87214F9EA1007253AB /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		A896EA89214FA0C2007253AB /* ListDataVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataVO.swift; sourceTree = "<group>"; };
 		A8BC54BC21464BF8008B42BC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A8C6280D21467B1900AB7D22 /* LoginFacebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFacebookViewController.swift; sourceTree = "<group>"; };
 		A8C6280F21467CC000AB7D22 /* Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Diary.entitlements; sourceTree = "<group>"; };
@@ -149,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A809914C214900E0003C8C11 /* DataVO.swift */,
+				A896EA89214FA0C2007253AB /* ListDataVO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,8 +230,8 @@
 		A8780604213D9EFB0015EB30 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				A896EA86214F9E98007253AB /* Services */,
 				A809914B214900D3003C8C11 /* Model */,
-				A8C6280F21467CC000AB7D22 /* Diary.entitlements */,
 				A870B8AE213FE0330013B925 /* Utils */,
 				A870B89C213FB1A90013B925 /* View */,
 				A8780636213D9FB30015EB30 /* Extention */,
@@ -219,6 +240,7 @@
 				A8780609213D9EFB0015EB30 /* Main.storyboard */,
 				A878060F213D9EFD0015EB30 /* Assets.xcassets */,
 				A8780611213D9EFD0015EB30 /* LaunchScreen.storyboard */,
+				A8C6280F21467CC000AB7D22 /* Diary.entitlements */,
 				A8780614213D9EFD0015EB30 /* Info.plist */,
 				A86B1FF92146C87800191240 /* GoogleService-Info.plist */,
 				A878060C213D9EFB0015EB30 /* Diary.xcdatamodeld */,
@@ -251,8 +273,24 @@
 			children = (
 				A8780637213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift */,
 				A88C8A6321428636003FBC25 /* CornerView.swift */,
+				A896EA78214F8FB0007253AB /* LocalizeSwift.swift */,
+				A896EA7A214F8FE1007253AB /* LocalizeProtocol.swift */,
+				A896EA76214F8F5F007253AB /* LocalizeString.swift */,
+				A896EA7C214F903C007253AB /* LocalizeStrings.swift */,
+				A896EA7E214F9065007253AB /* LocalizeCommonProtocol.swift */,
+				A896EA80214F90AC007253AB /* LocalizeJson.swift */,
+				A896EA82214F9109007253AB /* Localize.swift */,
+				A896EA84214F9174007253AB /* NetworkReachabilityManager.swift */,
 			);
 			path = Extention;
+			sourceTree = "<group>";
+		};
+		A896EA86214F9E98007253AB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A896EA87214F9EA1007253AB /* Service.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -492,18 +530,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8BC54BD21464BF8008B42BC /* DetailViewController.swift in Sources */,
+				A896EA7F214F9065007253AB /* LocalizeCommonProtocol.swift in Sources */,
 				A809914D214900E0003C8C11 /* DataVO.swift in Sources */,
 				A878060E213D9EFB0015EB30 /* Diary.xcdatamodeld in Sources */,
 				A8C6280E21467B1900AB7D22 /* LoginFacebookViewController.swift in Sources */,
 				A870B8A8213FBB350013B925 /* DiaryItem.swift in Sources */,
 				A8780638213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift in Sources */,
 				A870B8A1213FB7300013B925 /* ListDiary.swift in Sources */,
+				A896EA7D214F903C007253AB /* LocalizeStrings.swift in Sources */,
+				A896EA79214F8FB0007253AB /* LocalizeSwift.swift in Sources */,
+				A896EA83214F9109007253AB /* Localize.swift in Sources */,
+				A896EA81214F90AC007253AB /* LocalizeJson.swift in Sources */,
 				A870B8AD213FCE9F0013B925 /* UserInputViewController.swift in Sources */,
 				A8780608213D9EFB0015EB30 /* ViewController.swift in Sources */,
+				A896EA7B214F8FE1007253AB /* LocalizeProtocol.swift in Sources */,
+				A896EA77214F8F5F007253AB /* LocalizeString.swift in Sources */,
 				A870B8A6213FB7CA0013B925 /* DiaryViewController.swift in Sources */,
+				A896EA88214F9EA1007253AB /* Service.swift in Sources */,
+				A896EA8A214FA0C2007253AB /* ListDataVO.swift in Sources */,
 				A88C8A6421428636003FBC25 /* CornerView.swift in Sources */,
 				A870B8B0213FE03B0013B925 /* Utils.swift in Sources */,
 				A812EE43213E639F00CFDACC /* CalendarVars.swift in Sources */,
+				A896EA85214F9174007253AB /* NetworkReachabilityManager.swift in Sources */,
 				A8780606213D9EFB0015EB30 /* AppDelegate.swift in Sources */,
 				A812EE41213E631600CFDACC /* DateCollectionViewCell.swift in Sources */,
 			);

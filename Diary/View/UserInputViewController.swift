@@ -43,7 +43,7 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var mTitle: UITextView!
     
     let realm = try! Realm()
-    
+     var ref: DatabaseReference!
     var diaryList: Results<Diary>{
         get {
             return realm.objects(Diary.self)
@@ -65,19 +65,23 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
           diaryItem.date = self.mIndex
         diaryItem.HourMinutes = self.mHourMinutes
          diaryItem.postid = "\(UInt64(Date().timeIntervalSince1970 * 10000000))"
+        let uid = (Auth.auth().currentUser?.uid) ?? ""
+       
+        self.ref = Database.database().reference().child("user").child(uid)
         
-        var ref: DatabaseReference!
-        ref = Database.database().reference().child("user")
+                self.ref.updateChildValues([
+                    diaryItem.postid: [
+                        "title": diaryItem.title,
+                        "detail": diaryItem.detail,
+                        "hour": diaryItem.HourMinutes,
+                        "date": diaryItem.date,
+                        "status": diaryItem.status,
+                        "postid": diaryItem.postid
+                    ]
+                    
+                    ])
+            
         
-            ref.updateChildValues([
-                "\(UInt64(Date().timeIntervalSince1970 * 10000000))": [
-                "title": mTitle.text ?? "",
-                "detail": mDetail.text ?? "",
-                "hour": self.mHourMinutes,
-                "date": self.mIndex,
-                "status":  mStatus.text ?? ""
-                ]
-                ])
         
        
         Utils.SHOW_LOG(title: "timestamp", content: diaryItem.postid)

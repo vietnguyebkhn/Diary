@@ -8,13 +8,17 @@
 
 
 import UIKit
-import RealmSwift
-import Firebase
 import FBSDKCoreKit
+import FBSDKLoginKit
+import Firebase
+import FirebaseDatabase
+import RealmSwift
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
+    var ref: DatabaseReference!
     let realm = try! Realm()
+    let loginManager = FBSDKLoginManager()
     
     var diaryList: Results<Diary>{
         get {
@@ -42,6 +46,35 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             weekday = 7
         }
         GetstartDateDayPosition()
+        if Utils.checkInternet(viewcontroler: self) {
+            let diaryItem = Diary()
+            Service.getData() { [weak self] (error, resData) in
+                guard let strongSelf = self else {
+                    return
+                }
+                if resData.count != self?.diaryList.count {
+                    for item in resData {
+                        
+                        diaryItem.postid = item.postid
+                        diaryItem.date = item.date
+                        diaryItem.detail = item.detail
+                        diaryItem.HourMinutes = item.hour
+                        diaryItem.status = item.status
+                        diaryItem.title = item.title
+                        try! self?.realm.write({
+                                self?.realm.add(diaryItem)
+                                //            dismiss(animated: true, completion: nil)
+                            })
+                            
+                        
+                    }
+                } else if error != nil {
+                    let alert = UIAlertController(title: "Thong bao", message: error!.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dong y", style: .cancel, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -51,17 +84,24 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     @IBAction func mLogoutFB(_ sender: Any) {
+        
+        if Utils.checkInternet(viewcontroler: self) == true {
+        
          let firebaseAuth = Auth.auth()
         do {
+            loginManager.logOut()
             try firebaseAuth.signOut()
             FBSDKAccessToken.setCurrent(nil)
             let StoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let LoginScr = StoryBoard.instantiateViewController(withIdentifier: "LoginScr") as! LoginFacebookViewController
-            self.present(LoginScr, animated: false, completion: nil)
+            self.navigationController?.pushViewController(LoginScr, animated: false)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
 
+        } else {
+            return
+        }
     }
     
     @IBAction func mBackButton(_ sender: Any) {
