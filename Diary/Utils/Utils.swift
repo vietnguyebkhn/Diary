@@ -8,8 +8,21 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class Utils {
+    
+    static let ref = Database.database().reference()
+    
+    static func remove(child1: String, child2: String, child3: String) {
+        
+        let ref = self.ref.child(child1).child(child2).child(child3)
+        
+        ref.removeValue { error, _ in
+            
+            print(error)
+        }
+    }
     
     static func showMessage(title: String?, message: String?, viewcontroler: UIViewController) {
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)

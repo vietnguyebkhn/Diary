@@ -47,14 +47,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         GetstartDateDayPosition()
         if Utils.checkInternet(viewcontroler: self) {
-            let diaryItem = Diary()
+          
             Service.getData() { [weak self] (error, resData) in
                 guard let strongSelf = self else {
                     return
                 }
                 if resData.count != self?.diaryList.count {
                     for item in resData {
-                        
+                          let diaryItem = Diary()
                         diaryItem.postid = item.postid
                         diaryItem.date = item.date
                         diaryItem.detail = item.detail
@@ -62,11 +62,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         diaryItem.status = item.status
                         diaryItem.title = item.title
                         try! self?.realm.write({
-                                self?.realm.add(diaryItem)
+                            self?.realm.add(diaryItem, update: true)
+                            Utils.SHOW_LOG(title: "dỉayList", content: self?.diaryList.count)
+                            self?.mCalendar.reloadData()
                                 //            dismiss(animated: true, completion: nil)
                             })
-                            
-                        
                     }
                 } else if error != nil {
                     let alert = UIAlertController(title: "Thong bao", message: error!.localizedDescription, preferredStyle: .alert)
