@@ -20,7 +20,7 @@ class Utils {
         
         ref.removeValue { error, _ in
             
-            print(error)
+            print(error ?? "")
         }
     }
     
@@ -44,9 +44,6 @@ class Utils {
             Utils.SHOW_LOG(content: "Yes! internet is available.")
             return true
         }
-        
-         showMessage(title: "utils_message_title".localized, message: "internet_disable".localized, viewcontroler: viewcontroler)
-     
         return false
     }
     

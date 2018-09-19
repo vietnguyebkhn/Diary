@@ -18,12 +18,20 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //let diaryItem = Diary()
     var mDate = String()
     var mHour = String()
+    let InsUpdDelItem = InsUpdDel()
    // var SaveDate = String()
+    
      let realm = try! Realm()
     var diaryList: Results<Diary>{
         get {
             return realm.objects(Diary.self)
            
+        }
+    }
+    
+    var ListInsUpdDel: Results<InsUpdDel> {
+        get {
+            return realm.objects(InsUpdDel.self)
         }
     }
     
@@ -54,11 +62,13 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let diaryItem = Diary()
         let StoryBoard = UIStoryboard(name: "Diary", bundle: nil)
         let UserInput = StoryBoard.instantiateViewController(withIdentifier: "UserInputViewController") as! UserInputViewController
      // UserInput.setData(data: templist[indexPath.row])
-        
+        UserInput.postid = templist[indexPath.row].postid
+        UserInput.mIndex = mDate
+        UserInput.mHourMinutes = mHour
+        Utils.SHOW_LOG(title: "id selected cell", content: templist[indexPath.row].postid)
         self.navigationController?.pushViewController(UserInput, animated: true)
     }
     
@@ -85,21 +95,29 @@ class DiaryViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             let item = templist[indexPath.row]
             Utils.SHOW_LOG(title: "item", content: item)
-//            if !item.isInvalidated {
+            if !item.isInvalidated {
                 try! self.realm.write({
+                    if Utils.checkInternet(viewcontroler: self) {
+
                     Utils.remove(child1: "user", child2: (Auth.auth().currentUser?.uid)!, child3: item.postid)
+                    } else {
+                            InsUpdDelItem.del.append(item.postid)
+
+                        self.realm.add(InsUpdDelItem, update: true)
+                            Utils.SHOW_LOG(title: "Item Delete", content: ListInsUpdDel)
+                    }
                     self.realm.delete(item)
                 })
                 
             
                 templist.remove(at: indexPath.row)
-//                tableView.deleteRows(at:[indexPath], with: .automatic)
+               tableView.deleteRows(at:[indexPath], with: .automatic)
           
             //                                 mTableView.reloadData()
                 
-//            } else {
-//                print("khong the xoa")
-//            }
+            } else {
+                print("khong the xoa")
+            }
             
            
             

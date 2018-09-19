@@ -29,7 +29,13 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
     var mIndex: String = ""
     var mHourMinutes: String = ""
     var SaveDate = String()
-    
+    var postid = ""
+    let InsUpdDelItem = InsUpdDel()
+    var ListInsUpdDel: Results<InsUpdDel> {
+        get {
+            return realm.objects(InsUpdDel.self)
+        }
+    }
     
     
  //  let diaryItem = Diary()
@@ -41,7 +47,7 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var mDetail: UITextView!
     @IBOutlet weak var mStatus: UITextView!
     @IBOutlet weak var mTitle: UITextView!
-    
+     let diaryItem = Diary()
     let realm = try! Realm()
      var ref: DatabaseReference!
     var diaryList: Results<Diary>{
@@ -58,49 +64,59 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     @IBAction func mAddButton(_ sender: Any) {
-       let diaryItem = Diary()
+      
         diaryItem.title = mTitle.text
         diaryItem.status = mStatus.text
         diaryItem.detail = mDetail.text
           diaryItem.date = self.mIndex
         diaryItem.HourMinutes = self.mHourMinutes
-         diaryItem.postid = "\(UInt64(Date().timeIntervalSince1970 * 10000000))"
         let uid = (Auth.auth().currentUser?.uid) ?? ""
-       
-        self.ref = Database.database().reference().child("user").child(uid)
+        if postid == "" {
+         diaryItem.postid = "\(UInt64(Date().timeIntervalSince1970 * 10000000))"
         
-                self.ref.updateChildValues([
-                    diaryItem.postid: [
-                        "title": diaryItem.title,
-                        "detail": diaryItem.detail,
-                        "hour": diaryItem.HourMinutes,
-                        "date": diaryItem.date,
-                        "status": diaryItem.status,
-                        "postid": diaryItem.postid
-                    ]
-                    
-                    ])
+        if (mTitle.text != "" || mStatus.text != "" || mDetail.text != "" ) {
             
+            try! self.realm.write({
+                self.realm.add(diaryItem)
+            })
+        }
+        } else {
+            diaryItem.postid = postid
+            try! self.realm.write({
+                self.realm.add(diaryItem, update: true)
+                Utils.SHOW_LOG(title: "diaryItem", content: diaryItem)
+            
+            })
+        }
         
+        if Utils.checkInternet(viewcontroler: self) {
+            self.ref = Database.database().reference().child("user").child(uid)
+
+            self.ref.updateChildValues([
+                diaryItem.postid: [
+                    "title": diaryItem.title,
+                    "detail": diaryItem.detail,
+                    "hour": diaryItem.HourMinutes,
+                    "date": diaryItem.date,
+                    "status": diaryItem.status,
+                    "postid": diaryItem.postid
+                ]
+                
+                ])
+        } else {
+            InsUpdDelItem.ins.append(diaryItem.postid)
+            try! self.realm.write({
+                self.realm.add(InsUpdDelItem)
+                Utils.SHOW_LOG(title: "Item Insert", content: ListInsUpdDel)
+            })
+        }
         
-       
         Utils.SHOW_LOG(title: "timestamp", content: diaryItem.postid)
         Utils.SHOW_LOG(title: "date", content: mIndex)
         Utils.SHOW_LOG(title: "hour", content: mHourMinutes)
-        if (mTitle.text != "" || mStatus.text != "" || mDetail.text != "" ) {
-            
-        try! self.realm.write({
-            self.realm.add(diaryItem)
-//            dismiss(animated: true, completion: nil)
-        })
-        }
+       
         _ = navigationController?.popViewController(animated: true)
         
-//        let StoryBoard = UIStoryboard(name: "Diary", bundle: nil)
-//        let Diary = StoryBoard.instantiateViewController(withIdentifier: "DiaryViewController") as! DiaryViewController
-//        Diary.mDate = mIndex
-//        Diary.mHour = mHourMinutes
-//        self.navigationController?.pushViewController(Diary, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,11 +139,37 @@ class UserInputViewController: UIViewController, UITableViewDelegate, UITableVie
         hideKeyboardWhenTappedAround()
         Utils.SHOW_LOG(title: "mIndex", content: mIndex)
         Utils.SHOW_LOG(title: "mHourMinute", content: mHourMinutes)
+        
+        
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if postid != "" {
+            for item in diaryList {
+                if item.postid == postid {
+                    mTitle.text = item.title
+                    mStatus.text = item.status
+                    mDetail.text = item.detail
+
+                }
+            }
+            
+//            Utils.SHOW_LOG(title: "title", content: diaryList.filter("postid == %@", postid).value(forKey: "title") ?? "a")
+//            Utils.SHOW_LOG(title: "title", content: diaryList.filter("postid == %@", postid).value(forKeyPath: "detail") ?? "a")
+//            Utils.SHOW_LOG(title: "title", content: diaryList.filter("postid == %@", postid).value(forKeyPath: "status") ?? "a")
+//            mTitle.text = String(diaryList.filter("postid == %@", postid).value(forKeyPath: "title") as? String ?? "a")
+//            Utils.SHOW_LOG(title: "title", content: mTitle.text)
+//
+//            mStatus.text = String(diaryList.filter("postid == %@", postid).value(forKeyPath: "status") as? String ?? "a")
+//            mDetail.text = String(diaryList.filter("postid == %@", postid).value(forKeyPath: "detail") as? String ?? "a")
+            
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        var touch: UITouch? = touches.first as! UITouch
+        let touch: UITouch? = touches.first
         //        //location is relative to the current view
         //        // do something with the touched point
                if touch?.view != mStatusTableView {

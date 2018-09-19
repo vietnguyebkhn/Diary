@@ -18,6 +18,14 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     var ref: DatabaseReference!
     let realm = try! Realm()
+    
+    let InsUpdDelItem = InsUpdDel()
+    
+    var ListInsUpdDel: Results<InsUpdDel> {
+        get {
+            return realm.objects(InsUpdDel.self)
+        }
+    }
     var diaryList: Results<Diary>{
         get {
             return realm.objects(Diary.self)
@@ -37,25 +45,6 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
                 return
             } else {
             Utils.SHOW_LOG(content: "Login Firebase success")
-                self.ref = Database.database().reference().child("user").child((Auth.auth().currentUser?.uid)!)
-                for item in self.diaryList {
-                    if item != nil {
-                        self.ref.updateChildValues([
-                            item.postid: [
-                                "title": item.title,
-                                "detail": item.detail,
-                                "hour": item.HourMinutes,
-                                "date": item.date,
-                                "status": item.status,
-                                "postid": item.postid
-
-                            ]
-                            
-                            ])
-                    }
-                }
-//                self.checkLoginFB()
-//                return
                 let HomeStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
                 let Diary = HomeStoryboard.instantiateViewController(withIdentifier: "Calendar") as! ViewController
@@ -86,6 +75,28 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
     func checkLoginFB() {
        Auth.auth().addStateDidChangeListener { (auth, user) in
         if let user = user {
+            if self.InsUpdDelItem.uid == "" {
+            self.InsUpdDelItem.uid = (Auth.auth().currentUser?.uid)!
+                if !self.InsUpdDelItem.isInvalidated {
+                    try! self.realm.write({
+                        self.realm.add(self.InsUpdDelItem)
+                        Utils.SHOW_LOG(title: "uid", content: self.InsUpdDelItem.uid)
+                    })
+                }
+            }
+            
+            for item in self.ListInsUpdDel {
+                for itemDel in item.del {
+                    if itemDel != "" {
+                        Utils.remove(child1: "user", child2: (Auth.auth().currentUser?.uid)!, child3: itemDel )
+                        try! self.realm.write({
+                            Utils.remove(child1: "user", child2: (Auth.auth().currentUser?.uid)!, child3: itemDel)
+                            
+                        })
+                    }
+                }
+            }
+           
             self.ref = Database.database().reference().child("user").child((Auth.auth().currentUser?.uid)!)
             for item in self.diaryList {
                 if item != nil {
@@ -106,8 +117,6 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
           
             let Diary = HomeStoryboard.instantiateViewController(withIdentifier: "Calendar") as! ViewController
           self.navigationController?.pushViewController(Diary, animated: true)
-        
-      //  self.present(Diary, animated: false, completion: nil)
             Utils.SHOW_LOG(title: "UID", content: user.uid)
             
         } else {
@@ -143,7 +152,7 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
                     self.getData()
                 }
             } else {
-                Utils.SHOW_LOG(title: "That bai", content: error)
+                Utils.SHOW_LOG(title: "That bai", content: error ?? "")
             }
             
         }
@@ -170,7 +179,7 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
                     let dict = result as! Dictionary< String, Any>
                     print(dict)
                 } else {
-                    Utils.SHOW_LOG(title: "Get data false", content: error)
+                    Utils.SHOW_LOG(title: "Get data false", content: error ?? "")
                 }
                 
             })

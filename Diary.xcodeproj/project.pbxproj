@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		488512055C5A1546575C65F8 /* Pods_DiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2CAE5DDDAB5DEC148312B6 /* Pods_DiaryUITests.framework */; };
 		83D2559C87D9D6EEE2D68A50 /* Pods_Diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19C01AAF90CE6933580EC9F /* Pods_Diary.framework */; };
+		A808C926215227DE00C1F477 /* InsUpdDel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C925215227DE00C1F477 /* InsUpdDel.swift */; };
 		A809914D214900E0003C8C11 /* DataVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A809914C214900E0003C8C11 /* DataVO.swift */; };
 		A812EE41213E631600CFDACC /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812EE40213E631600CFDACC /* DateCollectionViewCell.swift */; };
 		A812EE43213E639F00CFDACC /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812EE42213E639F00CFDACC /* CalendarVars.swift */; };
@@ -69,6 +70,7 @@
 		706A51E25ACDCA69130421A5 /* Pods-DiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiaryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DiaryTests/Pods-DiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C92E1787ABBB822E05C4FF9 /* Pods-Diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.debug.xcconfig"; sourceTree = "<group>"; };
 		92B5BD2FE7FB1DB04777DE26 /* Pods_DiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A808C925215227DE00C1F477 /* InsUpdDel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsUpdDel.swift; sourceTree = "<group>"; };
 		A809914C214900E0003C8C11 /* DataVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataVO.swift; sourceTree = "<group>"; };
 		A812EE40213E631600CFDACC /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		A812EE42213E639F00CFDACC /* CalendarVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVars.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				A870B8AC213FCE9F0013B925 /* UserInputViewController.swift */,
 				A8BC54BC21464BF8008B42BC /* DetailViewController.swift */,
 				A8C6280D21467B1900AB7D22 /* LoginFacebookViewController.swift */,
+				A808C925215227DE00C1F477 /* InsUpdDel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				A88C8A6421428636003FBC25 /* CornerView.swift in Sources */,
 				A870B8B0213FE03B0013B925 /* Utils.swift in Sources */,
 				A812EE43213E639F00CFDACC /* CalendarVars.swift in Sources */,
+				A808C926215227DE00C1F477 /* InsUpdDel.swift in Sources */,
 				A896EA85214F9174007253AB /* NetworkReachabilityManager.swift in Sources */,
 				A8780606213D9EFB0015EB30 /* AppDelegate.swift in Sources */,
 				A812EE41213E631600CFDACC /* DateCollectionViewCell.swift in Sources */,

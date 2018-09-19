@@ -63,7 +63,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         diaryItem.title = item.title
                         try! self?.realm.write({
                             self?.realm.add(diaryItem, update: true)
-                            Utils.SHOW_LOG(title: "dỉayList", content: self?.diaryList.count)
+                            Utils.SHOW_LOG(title: "dỉayList", content: self?.diaryList.count ?? 0)
                             self?.mCalendar.reloadData()
                                 //            dismiss(animated: true, completion: nil)
                             })
@@ -99,6 +99,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             print ("Error signing out: %@", signOutError)
         }
 
+            realm.delete(diaryList)
+            
         } else {
             return
         }
@@ -241,9 +243,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cell.mDate.text = "\(indexPath.row + 1 - NumberofEmptyBox)"
             for diary in diaryList {
                 
-                var Index = "\(indexPath.row + 1 - NumberofEmptyBox)-\(MONTH)-\(YEAR)"
+                let Index = "\(indexPath.row + 1 - NumberofEmptyBox)-\(MONTH)-\(YEAR)"
                 if Index == diary.date {
-                    var index = indexPath.row
+                    let index = indexPath.row
                     switch index {
                     case 1...35:
                         cell.backgroundColor = UIColor(displayP3Red: 0, green: 100, blue: 0, alpha: 0.5)
@@ -257,9 +259,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cell.mDate.text = "\(indexPath.row + 1 - NextNumberofEmptyBox)"
             for diary in diaryList {
                 
-                var Index = "\(indexPath.row + 1 - NextNumberofEmptyBox)-\(MONTH)-\(YEAR)"
+                let Index = "\(indexPath.row + 1 - NextNumberofEmptyBox)-\(MONTH)-\(YEAR)"
                 if Index == diary.date {
-                    var index = indexPath.row
+                    let index = indexPath.row
                     switch index {
                     case 1...35:
                         cell.backgroundColor = UIColor(displayP3Red: 0, green: 100, blue: 0, alpha: 0.5)
@@ -273,9 +275,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             cell.mDate.text = "\(indexPath.row + 1 - PreviosofEmptyBox)"
             for diary in diaryList {
                 
-                    var Index = "\(indexPath.row + 1 - PreviosofEmptyBox)-\(MONTH)-\(YEAR)"
+                let Index = "\(indexPath.row + 1 - PreviosofEmptyBox)-\(MONTH)-\(YEAR)"
                     if Index == diary.date {
-                        var index = indexPath.row
+                        let index = indexPath.row
                         switch index {
                         case 1...35:
                            cell.backgroundColor = UIColor(displayP3Red: 0, green: 100, blue: 0, alpha: 0.5)
