@@ -240,15 +240,15 @@
 				A8780636213D9FB30015EB30 /* Extention */,
 				A8780605213D9EFB0015EB30 /* AppDelegate.swift */,
 				A8780607213D9EFB0015EB30 /* ViewController.swift */,
+				A812EE40213E631600CFDACC /* DateCollectionViewCell.swift */,
 				A8780609213D9EFB0015EB30 /* Main.storyboard */,
+				A812EE42213E639F00CFDACC /* CalendarVars.swift */,
 				A878060F213D9EFD0015EB30 /* Assets.xcassets */,
 				A8780611213D9EFD0015EB30 /* LaunchScreen.storyboard */,
 				A8C6280F21467CC000AB7D22 /* Diary.entitlements */,
 				A8780614213D9EFD0015EB30 /* Info.plist */,
 				A86B1FF92146C87800191240 /* GoogleService-Info.plist */,
 				A878060C213D9EFB0015EB30 /* Diary.xcdatamodeld */,
-				A812EE40213E631600CFDACC /* DateCollectionViewCell.swift */,
-				A812EE42213E639F00CFDACC /* CalendarVars.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";

@@ -15,7 +15,10 @@ import FirebaseDatabase
 import RealmSwift
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
-    
+    @IBOutlet weak var mMonthLb: UILabel!
+    @IBOutlet weak var mCalendar: UICollectionView!
+
+   
     var ref: DatabaseReference!
     let realm = try! Realm()
     let loginManager = FBSDKLoginManager()
@@ -25,6 +28,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             return realm.objects(Diary.self)
         }
     }
+    
+    var ListInsUpdDel: Results<InsUpdDel> {
+        get {
+            return realm.objects(InsUpdDel.self)
+        }
+    }
+
     let MonthInYear = ["January", "February", "March", "April", "May", "June", "July", "August", "Septemper", "October", "November", "December"]
     let DayInWeek = ["Monday", "Tuesday", "Wednesday", "Thusday", "Friday", "Saturday", "Sunday"]
     var DayinMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -39,7 +49,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var MONTH = month + 1
     var YEAR = year
     override func viewDidLoad() {
+         mCalendar.reloadData()
         super.viewDidLoad()
+        
         currentMonth = MonthInYear[month]
         mMonthLb.text = "\(currentMonth) \(year)"
         if weekday == 0 {
@@ -75,11 +87,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             }
         }
+       
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        mCalendar.reloadData()
+         mCalendar.reloadData()
     }
     
     
@@ -99,9 +113,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             print ("Error signing out: %@", signOutError)
         }
 
-            realm.delete(diaryList)
+            try! self.realm.write({
+                realm.delete(diaryList)
+                realm.delete(ListInsUpdDel)
+            })
+            
             
         } else {
+            let alert = UIAlertController(title: "Thông báo", message: "Internet không khả dụng", preferredStyle: .alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
             return
         }
     }
@@ -197,8 +221,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    @IBOutlet weak var mMonthLb: UILabel!
-    @IBOutlet weak var mCalendar: UICollectionView!
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -249,6 +271,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     switch index {
                     case 1...35:
                         cell.backgroundColor = UIColor(displayP3Red: 0, green: 100, blue: 0, alpha: 0.5)
+                        
                     default:
                         break
                     }
@@ -281,6 +304,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         switch index {
                         case 1...35:
                            cell.backgroundColor = UIColor(displayP3Red: 0, green: 100, blue: 0, alpha: 0.5)
+                            
                         default:
                          break
                         }
@@ -311,6 +335,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         
         return cell 
+    }
+    func removeBorderNavigation()
+    {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
 
 

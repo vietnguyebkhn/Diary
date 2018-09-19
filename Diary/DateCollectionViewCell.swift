@@ -12,4 +12,5 @@ class DateCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var mDate: UILabel!
     
+    @IBOutlet weak var mImageBackground: UIImageView!
 }
