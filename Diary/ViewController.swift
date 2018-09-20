@@ -48,9 +48,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var DAY = 0
     var MONTH = month + 1
     var YEAR = year
+    
+    @objc func btnClick(_ sender:UIButton) {
+        view.endEditing(true)
+        self.revealViewController().revealToggle(sender)
+    }
+    
     override func viewDidLoad() {
          mCalendar.reloadData()
         super.viewDidLoad()
+        let myBtn : UIButton = UIButton()
+        myBtn.setImage(UIImage(named: "menu"), for: .normal)
+        myBtn.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        myBtn.addTarget(self, action:  #selector(self.btnClick(_:)) , for: .touchUpInside)
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: myBtn), animated: true)
+        
+       // self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         currentMonth = MonthInYear[month]
         mMonthLb.text = "\(currentMonth) \(year)"
@@ -108,7 +121,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             FBSDKAccessToken.setCurrent(nil)
             let StoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let LoginScr = StoryBoard.instantiateViewController(withIdentifier: "LoginScr") as! LoginFacebookViewController
-            self.navigationController?.pushViewController(LoginScr, animated: false)
+         //   self.navigationController?.pushViewController(LoginScr, animated: false)
+            self.present(LoginScr, animated: true, completion: nil)
+
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

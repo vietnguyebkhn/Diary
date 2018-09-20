@@ -48,7 +48,8 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let HomeStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
                 let Diary = HomeStoryboard.instantiateViewController(withIdentifier: "Calendar") as! ViewController
-                self.navigationController?.pushViewController(Diary, animated: true)
+                self.present(Diary, animated: true, completion: nil)
+             //   self.navigationController?.pushViewController(Diary, animated: true)
             }
         }
     }
@@ -116,7 +117,9 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
             let HomeStoryboard = UIStoryboard(name: "Main", bundle: nil)
           
             let Diary = HomeStoryboard.instantiateViewController(withIdentifier: "Calendar") as! ViewController
-          self.navigationController?.pushViewController(Diary, animated: true)
+         // self.navigationController?.pushViewController(Diary, animated: true)
+            self.present(Diary, animated: true, completion: nil)
+
             Utils.SHOW_LOG(title: "UID", content: user.uid)
             
         } else {
@@ -165,7 +168,9 @@ class LoginFacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
         } else {
             let HomeStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let Diary = HomeStoryboard.instantiateViewController(withIdentifier: "Calendar") as! ViewController
-            self.navigationController?.pushViewController(Diary, animated: true)
+           // self.navigationController?.pushViewController(Diary, animated: true)
+            self.present(Diary, animated: true, completion: nil)
+
         }
         
     }
