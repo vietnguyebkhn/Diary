@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuTableViewCell: UITableViewCell {
-
+    
     
     @IBOutlet weak var mLabel: UILabel!
     @IBOutlet weak var mImage: UIImageView!
@@ -25,10 +25,10 @@ class MenuTableViewCell: UITableViewCell {
         Utils.SHOW_LOG(title: "mLabel", content: mLabel.text)
         mImage.image = UIImage(named: image)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     

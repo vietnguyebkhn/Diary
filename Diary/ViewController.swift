@@ -109,42 +109,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
          mCalendar.reloadData()
     }
     
-    
-    @IBAction func mLogoutFB(_ sender: Any) {
-        
-        if Utils.checkInternet(viewcontroler: self) == true {
-        
-         let firebaseAuth = Auth.auth()
-        do {
-            loginManager.logOut()
-            try firebaseAuth.signOut()
-            FBSDKAccessToken.setCurrent(nil)
-            let StoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            let LoginScr = StoryBoard.instantiateViewController(withIdentifier: "LoginScr") as! LoginFacebookViewController
-         //   self.navigationController?.pushViewController(LoginScr, animated: false)
-            self.present(LoginScr, animated: true, completion: nil)
-
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-
-            try! self.realm.write({
-                realm.delete(diaryList)
-                realm.delete(ListInsUpdDel)
-            })
-            
-            
-        } else {
-            let alert = UIAlertController(title: "Thông báo", message: "Internet không khả dụng", preferredStyle: .alert)
-            alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
-    
     @IBAction func mBackButton(_ sender: Any) {
         switch currentMonth {
         case "January":

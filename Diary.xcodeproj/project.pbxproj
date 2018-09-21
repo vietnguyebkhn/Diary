@@ -12,6 +12,8 @@
 		A808C926215227DE00C1F477 /* InsUpdDel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A808C925215227DE00C1F477 /* InsUpdDel.swift */; };
 		A808E6CC21541BE90016D327 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A808E6CB21541BE90016D327 /* SWRevealViewController.m */; };
 		A809914D214900E0003C8C11 /* DataVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A809914C214900E0003C8C11 /* DataVO.swift */; };
+		A80AB2F72154CD4400783F9C /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80AB2F52154CD4400783F9C /* MenuTableViewCell.swift */; };
+		A80AB2F82154CD4400783F9C /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80AB2F62154CD4400783F9C /* MenuTableViewCell.xib */; };
 		A812EE41213E631600CFDACC /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812EE40213E631600CFDACC /* DateCollectionViewCell.swift */; };
 		A812EE43213E639F00CFDACC /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812EE42213E639F00CFDACC /* CalendarVars.swift */; };
 		A86B1FFA2146C87800191240 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A86B1FF92146C87800191240 /* GoogleService-Info.plist */; };
@@ -45,8 +47,6 @@
 		A8BC54BD21464BF8008B42BC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC54BC21464BF8008B42BC /* DetailViewController.swift */; };
 		A8C6280E21467B1900AB7D22 /* LoginFacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C6280D21467B1900AB7D22 /* LoginFacebookViewController.swift */; };
 		A8DD651821541DF90004411C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD651721541DF90004411C /* MenuViewController.swift */; };
-		A8DD651B21541E160004411C /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD651921541E160004411C /* MenuTableViewCell.swift */; };
-		A8DD651C21541E160004411C /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8DD651A21541E160004411C /* MenuTableViewCell.xib */; };
 		C0AF3DC0FF8011B08C890DD8 /* Pods_DiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B5BD2FE7FB1DB04777DE26 /* Pods_DiaryTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +79,8 @@
 		A808E6CB21541BE90016D327 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		A808E6CD21541C580016D327 /* Diary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diary-Bridging-Header.h"; sourceTree = "<group>"; };
 		A809914C214900E0003C8C11 /* DataVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataVO.swift; sourceTree = "<group>"; };
+		A80AB2F52154CD4400783F9C /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		A80AB2F62154CD4400783F9C /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		A812EE40213E631600CFDACC /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		A812EE42213E639F00CFDACC /* CalendarVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVars.swift; sourceTree = "<group>"; };
 		A86B1FF92146C87800191240 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -119,8 +121,6 @@
 		A8C6280D21467B1900AB7D22 /* LoginFacebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFacebookViewController.swift; sourceTree = "<group>"; };
 		A8C6280F21467CC000AB7D22 /* Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Diary.entitlements; sourceTree = "<group>"; };
 		A8DD651721541DF90004411C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Diary/MenuViewController.swift; sourceTree = SOURCE_ROOT; };
-		A8DD651921541E160004411C /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		A8DD651A21541E160004411C /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		B19C01AAF90CE6933580EC9F /* Pods_Diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBFD1251665C473C037E64C /* Pods-DiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiaryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DiaryUITests/Pods-DiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF2CAE5DDDAB5DEC148312B6 /* Pods_DiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,8 +218,8 @@
 			children = (
 				A870B89F213FB7300013B925 /* ListDiary.swift */,
 				A870B8A0213FB7300013B925 /* ListDiary.xib */,
-				A8DD651921541E160004411C /* MenuTableViewCell.swift */,
-				A8DD651A21541E160004411C /* MenuTableViewCell.xib */,
+				A80AB2F52154CD4400783F9C /* MenuTableViewCell.swift */,
+				A80AB2F62154CD4400783F9C /* MenuTableViewCell.xib */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -435,7 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8780613213D9EFD0015EB30 /* LaunchScreen.storyboard in Resources */,
-				A8DD651C21541E160004411C /* MenuTableViewCell.xib in Resources */,
+				A80AB2F82154CD4400783F9C /* MenuTableViewCell.xib in Resources */,
 				A8780610213D9EFD0015EB30 /* Assets.xcassets in Resources */,
 				A878060B213D9EFB0015EB30 /* Main.storyboard in Resources */,
 				A870B8A2213FB7300013B925 /* ListDiary.xib in Resources */,
@@ -568,7 +568,7 @@
 				A870B8A8213FBB350013B925 /* DiaryItem.swift in Sources */,
 				A8780638213D9FD10015EB30 /* Hidekeyboardwhentouchanywhere.swift in Sources */,
 				A870B8A1213FB7300013B925 /* ListDiary.swift in Sources */,
-				A8DD651B21541E160004411C /* MenuTableViewCell.swift in Sources */,
+				A80AB2F72154CD4400783F9C /* MenuTableViewCell.swift in Sources */,
 				A896EA7D214F903C007253AB /* LocalizeStrings.swift in Sources */,
 				A896EA79214F8FB0007253AB /* LocalizeSwift.swift in Sources */,
 				A896EA83214F9109007253AB /* Localize.swift in Sources */,
